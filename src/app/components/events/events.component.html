@@ -1,0 +1,136 @@
+<!-- <ng4-loading-spinner></ng4-loading-spinner> -->
+<app-header></app-header>
+<div id="section-refine-search">
+  <section class="section-refine-search">
+    <div class="container">
+      <div class="row">
+        <form class="col-md-12">
+          <div class="row">
+            <div class="keyword col-sm-10">
+              <label>Search Keyword</label>
+              <input type="text" name="search" class="form-control hasclear" placeholder="Search" [(ngModel)]="searchValue">
+            </div>
+            <div class="col-sm-2 search">
+              <a href="/search/{{searchValue}}">Search</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-search-content">
+    <div class="container">
+      <div class="row">
+        <div id="secondary" class="col-md-4 col-lg-3">
+          <div class="search-filter">
+            <div class="search-event-title">
+              <h2>Filter By</h2>
+            </div>
+            <div class="search-filter-price">
+              <h3>Name</h3>
+              <input type="text" #listFilter (keyup)="0" placeholder="Event Name" />
+            </div>
+            <div class="search-filter-price">
+              <h3>Location</h3>
+              <select (change)="onChange($event.target.value)" [(ngModel)]="selectedState">
+                <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+              </select>
+            </div>
+            <div class="search-filter-delivery">
+              <h3>Segment</h3>
+              <div class="checkbox">
+                <input id="music" class="styled" type="checkbox" #music (change)="0">
+                <label for="music">
+                    Music
+                </label>
+              </div>
+              <div class="checkbox">
+                <input id="film" class="styled" type="checkbox" #film (change)="0">
+                <label for="film">
+                  Film
+                </label>
+              </div>
+              <div class="checkbox">
+                <input id="at" class="styled" type="checkbox" #at (change)="0">
+                <label for="at">
+                  Arts and Theatres
+                </label>
+              </div>
+              <div class="checkbox">
+                <input id="sports" class="styled" type="checkbox" #sports (change)="0">
+                <label for="sports">
+                  Sports
+                </label>
+              </div>
+            </div>
+            <div class="search-filter-price">
+              <h3>Price Range</h3>
+              Min Price: <input type="number" placeholder="Min Price" #minFilter [(ngModel)]="minAmt" min="10" (keyup)="0" /> 
+              Max Price: <input type="number" placeholder="Max Price" [(ngModel)]="maxAmt" max="500" #maxFilter (keyup)="0" />              
+            </div>
+            <div class="search-filter-price">
+              <h3>Dates</h3>
+              Start Date: <input type="date" placeholder="Start Date" [(ngModel)]="startDate" /> 
+              End Date: <input type="date" placeholder="End Date" [(ngModel)]="endDate" />              
+            </div>
+          </div>
+        </div>
+
+        <div id="primary" class="col-md-8 col-lg-9">
+
+          <div class="search-result-header">
+            <div class="row">
+              <div class="col-sm-7">
+                <!-- <h2>Search Results : <span>{{keyword}}</span></h2>
+                <span>Showing <strong>{{searchCount || 0}}</strong> Results</span> -->
+              </div>
+              <div class="col-sm-5 text-right">
+                <label>Sort By</label>
+                <select class="selectpicker dropdown" (change)="onSortChange($event.target.value)" [(ngModel)]="sortBy">
+                  <option *ngFor="let dropdown of dropdownValues" [ngValue]="dropdown">{{dropdown}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-result-item" *ngFor="let events of cleanedData | filterResult: listFilter.value:selectedState:minAmt:maxAmt:music.checked:film.checked:sports.checked:at.checked:startDate:endDate | sortResult : sortBy  | paginate: { itemsPerPage: 10, currentPage: p } ">
+            <div *ngFor="let ee of events  ">
+              <div class="row">
+                <div class="search-result-item-info col-sm-9">
+                  <h3>{{ee?.name}}</h3>
+                  <ul class="row">
+                    <li class="col-sm-3 col-lg-3">
+                      <span>Venue</span>
+                      {{ee?._embedded?.venues[0].name}} ({{ee?._embedded?.venues[0].city?.name}})
+                    </li>
+                    <li class="col-sm-3 col-lg-3">
+                      <span>Segment / Genre</span>
+                      {{ee?.classifications[0].segment?.name}} ({{ee?.classifications[0].genre?.name}})
+                    </li>
+                    <li class="col-sm-3 col-lg-3">
+                      <span>{{ee?.dates.start?.localDate | date: 'EEEE'}}</span>
+                      {{ee?.dates.start?.localDate | date: 'MMMM d, y'}}
+                    </li>
+                    <li class="col-sm-3 col-lg-3">
+                      <span>Time</span>
+                      {{ee?.dates?.start.dateTime | amTz:ee?.dates?.timezone | amDateFormat:'h:mm:ss a'}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="search-result-item-price col-sm-3">
+                  <span>Price Ranges From</span>
+                  <strong>${{ee?.priceRanges[0].min}} - ${{ee?.priceRanges[0].max}}</strong>
+                  <a href="/details/{{ee?.id}}" >View Event</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <pagination-controls *ngIf="searchCount" class="search-result-footer" (pageChange)="p = $event"></pagination-controls>
+          <p *ngIf="!searchCount" class="form-error">No results found.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

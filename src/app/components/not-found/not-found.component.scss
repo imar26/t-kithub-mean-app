@@ -1,0 +1,61 @@
+// Imports
+@import "../../../sass/_variables.scss";
+@import "../../../sass/_mixins.scss";
+@import "../../../sass/_extend.scss";
+
+.section-page-content {
+    &.error-404 {
+        background:#edeef4 url(../../../assets/images/error-page-bg.jpg) no-repeat $center bottom!important;
+        padding:120px 0;
+    }
+    .section-404 {
+        text-align: $center;
+        h2 {
+            font-size:231px;
+            line-height:231px;
+            color:$upcoming-para;
+            font-family: $montserrat-hairline;
+            margin:0 0 50px;
+        }
+        p {
+            font-size:30px;
+            line-height:45px;
+            color:$upcoming-para;
+            font-family: $montserrat-light;
+            margin:0 0 50px;
+        }
+        .secondary-link{
+            display:$inline-block;
+            padding:20px 70px;
+            background:none;
+            text-transform:none;
+            font-family: $montserrat-light;
+            font-size:25px;
+            border: 1px solid $link-orange;
+            color: $link-orange;
+            @include border-radius(50px);
+            text-align: $center;
+            &:hover {
+                background:$link-orange;
+                border:1px solid $link-orange;
+                text-decoration: none;
+                color: $white;
+            }
+        }
+    }
+}
+
+// Media Queries
+@media (max-width: 992px) {
+    .section-page-content {
+        .section-404 {
+            h2 {
+                font-size: 171px;
+                line-height: 171px;
+            }
+            .secondary-link {
+                padding: 20px 25px;
+            }
+        }
+    }
+}

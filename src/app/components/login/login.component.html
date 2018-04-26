@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div id="login-page" class="login-page">
+  <div class="container">
+    <div class="row">
+      <div class="offset-xl-3 col-xl-6 offset-md-2 col-md-8 col-sm-12">
+        <div class="box">
+          <div class="buttons clearfix">
+            <ul>
+              <li class="active"><a>Login</a></li>
+              <li><a routerLink="/register">Sign Up</a></li>
+            </ul>
+          </div>
+          <h2>Login Form</h2>
+          <form method="post" (ngSubmit)="login()" #f="ngForm">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" ngModel name="userName" id="userName" #userName="ngModel" placeholder="Username" class="form-control" required />
+                  <span class="help-block" *ngIf="!userName.valid && userName.touched">
+                    Please enter username!
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="password" ngModel name="password" id="password" #password="ngModel" placeholder="Password" class="form-control" required />
+                  <span class="help-block" *ngIf="!password.valid && password.touched">
+                    Please enter password!
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="offset-md-4 col-md-4 text-center clearfix">
+                  <input type="submit" class="submit-btn" value="Login" [disabled]="!f.valid" />                  
+                </div>
+                <div class="col-md-4 text-right forgot-password">
+                  <a routerLink="/forgot-password">Forgot Password?</a>
+                </div>
+              </div>                
+            </div>
+          </form>
+          <div class="form-error" *ngIf="errorFlag">
+            <p>{{errorMsg}}</p>
+          </div>
+          <h5>You could also Sign in using</h5>
+          <div class="social buttons clearfix text-center">
+            <ul>
+              <li *ngIf="env" class="fbk"><a href="/auth/facebook"><span class="fa fa-facebook"></span> Facebook</a></li>
+              <li *ngIf="env" class="gp"><a href="/auth/google"><span class="fa fa-google-plus"></span> Google Plus</a></li>
+              <li *ngIf="!env" class="gp {{env}}"><a href="http://localhost:3000/auth/google"><span class="fa fa-google-plus"></span> Google Plus</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

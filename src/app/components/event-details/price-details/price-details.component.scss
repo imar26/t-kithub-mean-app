@@ -1,0 +1,100 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+@import "../../../../sass/_extend.scss";
+
+.section-event-single-header {
+	background: $white;
+    border-bottom: 1px solid $tickets;
+    border-top: 1px solid $tickets;
+    margin: 0;
+	padding: 40px 0;
+	h1 {
+		border: medium none;
+		color: $footer-border-top;
+		font-size: 25px;
+		line-height: 56px;
+		margin: 0;
+		padding: 0;
+		text-align: $left;
+		text-transform: none;
+		float: $left;
+	}
+	.ticket-purchase {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		float: $right;
+		vertical-align: middle;
+		display: table;
+		li {
+			display: table-cell;
+			font-size: 16px;
+			color: $ticket-table;
+			font-family: $montserrat-light;
+			vertical-align: middle;
+			position: $relative;
+			span {
+				font-size: 25px;
+				color: $footer-border-top;
+				display: $inline-block;
+				margin: 0 25px 0 15px;
+				&.message {
+					position: $absolute;
+					font-size: 15px;
+					line-height: 21px;
+					right: 0;
+					bottom: -25px;
+					margin-right: 0;
+					margin-left: 0;
+					color: $red;
+					width: 400px;
+					text-align: $right;
+				}
+			}
+			a {
+				font-size: 16px;
+				padding: 20px 35px;
+				@include border-radius(5px);
+				color: $white;
+				background: $link-orange;
+				border: 1px solid $link-orange;
+				display: $inline-block;
+				font-family: $montserrat-regular;
+				&:hover {
+					color: $link-orange;
+    				background: $white;
+				}
+				&:focus {
+					outline: 0;
+				}
+			}
+		}
+	}
+}
+
+// Media Queries
+@media (max-width: 992px) {
+	.section-event-single-header {
+		h1 {
+			font-size: 21px;
+    		line-height: 27px;
+		}
+		.ticket-purchase {
+			li {
+				a {
+					padding: 10px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.section-event-single-header {
+		.ticket-purchase {
+			float: none;
+			margin: 15px 0;
+		}
+	}
+}

@@ -1,0 +1,45 @@
+<section class="section-event-category">
+  <div class="container">
+    <div class="row">
+      <div class="section-header">
+        <h2>Event by Categories</h2>
+      </div>
+      <div class="section-content">
+        <ul class="row clearfix">
+          <li class="col-sm-3 category-{{i+1}}" *ngFor="let segment of genres; let i = index">
+            <img src="../../../../assets/images/event-category-{{i+1}}.jpg" alt="image">
+            <a routerLink="/categories/{{segment.id}}">
+              <!-- <span>{{segment.id}}</span> -->
+              <span>{{segment.name}}</span>
+              
+            </a>
+          </li>
+          <!-- <li class="category-1 col-sm-3">
+            <img src="../../../../assets/images/event-category-1.jpg" alt="image">
+            <a href="#">
+              <span>Concerts</span>
+            </a>
+          </li>
+          <li class="category-2 col-sm-3">
+            <img src="../../../../assets/images/event-category-2.jpg" alt="image">
+            <a href="#">
+              <span>Sports</span>
+            </a>
+          </li>
+          <li class="category-3 col-sm-3">
+            <img src="../../../../assets/images/event-category-3.jpg" alt="image">
+            <a href="#">
+              <span>Threaters</span>
+            </a>
+          </li>
+          <li class="category-4 col-sm-3">
+            <img src="../../../../assets/images/event-category-4.jpg" alt="image">
+            <a href="#">
+              <span>Parties</span>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

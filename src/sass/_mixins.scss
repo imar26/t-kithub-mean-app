@@ -1,0 +1,37 @@
+@mixin transition($property, $duration, $ease, $delay) {
+  -webkit-transition: $property $duration $ease $delay;
+  -moz-transition: $property $duration $ease $delay;
+  -o-transition: $property $duration $ease $delay;
+  transition: $property $duration $ease $delay;
+}
+
+@mixin box-shadow($hoffset, $voffset, $blur, $spread, $color) {
+  -webkit-box-shadow: $hoffset $voffset $blur $spread $color;
+  -moz-box-shadow: $hoffset $voffset $blur $spread $color;
+  box-shadow: $hoffset $voffset $blur $spread $color;
+}
+
+@mixin box-shadow-none($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin background-size($value) {
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  background-size: $value;
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content}
+	&:-ms-input-placeholder      {@content}  
+}

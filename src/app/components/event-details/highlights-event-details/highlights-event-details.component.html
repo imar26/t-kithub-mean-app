@@ -1,0 +1,48 @@
+<section class="section-event-single-content">
+  <div class="container">
+    <div class="row">
+      <div id="primary" class="col-sm-12 col-md-12">
+        <div class="event-info">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="event-info-img">
+                <div id="slider">
+                  <ul class="slides">
+                    <li>
+                      <img src={{event?.images[0].url}} alt="image" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="event-highlights">
+                <h2>Information About this Event</h2>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul>
+                      <li *ngIf="event?._embedded?.venues[0].parkingDetail"> <strong>Parking: </strong>: {{event?._embedded?.venues[0].parkingDetail}}</li>
+                      <li *ngIf="event?._embedded?.venues[0].generalInfo?.childRule"> <strong>Child Rule: </strong>{{event?._embedded?.venues[0].generalInfo?.childRule}}</li>
+                      <li *ngIf="event?._embedded?.venues[0].accessibleSeatingDetail"> <strong>Seating Details: </strong>{{event?._embedded?.venues[0].accessibleSeatingDetail}}</li>
+                      <li *ngIf="event?._embedded?.venues[0].boxOfficeInfo?.acceptedPaymentDetail"> <strong>Payment Details: </strong>{{event?._embedded?.venues[0].boxOfficeInfo?.acceptedPaymentDetail}}</li>
+                      <li *ngIf="event?._embedded?.venues[0].boxOfficeInfo?.openHoursDetail"> <strong>Open Hours: </strong>{{event?._embedded?.venues[0].boxOfficeInfo?.openHoursDetail}}</li>
+                      <li *ngIf="event?._embedded?.venues[0].boxOfficeInfo?.phoneNumberDetail"> <strong>Phone Number: </strong>{{event?._embedded?.venues[0].boxOfficeInfo?.phoneNumberDetail}}</li>
+      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="event-location">
+          <h2>Location</h2>
+          <p>
+            <span>{{event?._embedded?.venues[0].name}}</span> |
+            <span>{{event?._embedded?.venues[0].city?.name}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

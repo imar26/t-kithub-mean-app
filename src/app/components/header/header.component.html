@@ -1,0 +1,75 @@
+<header id="header" class="{{headerClass}}">
+  <div class="top-header top-header-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="top-left">
+            <ul class="clearfix">
+              <li>
+                <a href="tel:+1 617 319 5421">
+                  <i class="fa fa-phone"></i>
+                  +1 617 319 5421
+                </a>
+              </li>
+              <li>
+                <a href="mailto:khatri.bh@husky.neu.edu"> 
+                  <i class="fa fa-envelope-o"></i>
+                  hello@t-kithub.com
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="top-right">
+            <ul *ngIf="showHeader" class="clearfix">
+              <li>
+                <a routerLink="/login">Sign In</a>
+              </li>
+              <li>
+                <a routerLink="/register">Sign Up</a>
+              </li>
+            </ul>
+            <ul *ngIf="!showHeader" class="clearfix">
+              <li>
+                <a>Hi, {{firstName}}</a>
+              </li>
+              <li>
+                <a (click)="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="{{divClass}}">
+    <div class="container">
+      <div class="row">
+        <div class="site-branding col-lg-3">
+          <h1 class="site-title"><a routerLink="/" title="t-kithub" rel="home"><img src="assets/images/tkithub-logo.png" alt="logo"></a></h1>
+        </div>
+        <div class="col-lg-9">
+          <nav id="site-navigation" class="navbar">
+            <div class="navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-right" id="js-bootstrap-offcanvas">
+              <button type="button" class="offcanvas-toggle closecanvas" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
+                 <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+              </button>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a routerLink="/events">Events</a></li>
+                <li><a href="/categories/KZFzniwnSyZfZ7v7nJ">Music</a></li>
+                <li><a href="/categories/KZFzniwnSyZfZ7v7nn">Film</a></li>
+                <li><a href="/categories/KZFzniwnSyZfZ7v7nE">Sports</a></li>
+                <li><a href="/categories/KZFzniwnSyZfZ7v7na">Arts & Theatre</a></li>
+                <li><a routerLink="/deals">Deals</a></li>
+                <li *ngIf="showUser"><a routerLink="/profile">Profile</a></li>
+                <li *ngIf="showAdmin"><a routerLink="/users">Users</a></li>
+                <li *ngIf="showUser" class="cart"><a routerLink="/cart">{{cartItems}}</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

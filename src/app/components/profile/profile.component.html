@@ -1,0 +1,134 @@
+<app-header></app-header>
+<div id="profile-page" class="profile-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <tabs>
+          <tab tabTitle="Profile">
+            <form method="post" #f="ngForm">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control" [ngModel]="user?.firstName"
+                      (ngModelChange)="user.firstName = $event" #firstName="ngModel" required />
+                    <span class="help-block" *ngIf="!firstName.valid && firstName.touched">
+                      Please enter first name!
+                    </span>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control" [ngModel]="user?.lastName"
+                      (ngModelChange)="user.lastName = $event" #lastName="ngModel" required />
+                    <span class="help-block" *ngIf="!lastName.valid && lastName.touched">
+                      Please enter last name!
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Username</label>
+                    <input type="text" name="userName" id="userName" placeholder="Username" class="form-control" [ngModel]="user?.userName" (ngModelChange)="user.userName = $event"
+                      required disabled />
+                  </div>
+                  <div class="col-md-6">
+                    <label>Email Address</label>
+                    <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" [ngModel]="user?.email" (ngModelChange)="user.email = $event"
+                      required email disabled />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group no-margin-bottom">
+                <div class="row updateBtn">
+                  <div class="offset-md-5">
+                    <input type="button" (click)="updateProfile(user)" class="submit-btn" [disabled]="!f.valid" value="Update Profile" />
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="form-error" *ngIf="errorFlag">
+              <p>{{errorMsg}}</p>
+            </div>
+            <div class="form-success" *ngIf="successFlag">
+              <p>{{successMsg}}</p>
+            </div>
+          </tab>
+          <tab tabTitle="Order History">
+            <h3>Order History</h3>
+            <div>
+              <div *ngFor="let order of orders" class="row order-list">
+                  <div class="col-md-5 order">
+                    <h5>{{order?.name}}</h5>
+                    <p>{{order?._embedded?.venues[0]?.name}}, {{order?._embedded?.venues[0]?.city?.name}}</p>
+                    <p>{{order?.dates?.start?.dateTime | date: 'fullDate'}} | {{order?.dates?.start?.dateTime | amTz:order?.dates?.timezone | amDateFormat:'h:mm:ss a'}}</p>
+                    <br/>
+                    <h6>Order Placed On</h6>
+                    <p>{{order?.dateCreated | date: 'mediumDate'}} | {{order?.dateCreated | amDateFormat:'h:mm:ss a'}}</p>
+                  </div>
+                  <div class="col-md-4 information">
+                    <h5>Package type</h5>
+                    <p>{{order?.data.packageType}}</p>
+                    <h5>Number of Tickets</h5>
+                    <p>{{order?.data.noTickets}}</p>
+                    <h5>Total Price</h5>
+                    <p>${{order?.data.total}}</p>
+                  </div>
+                  <div class="col-md-3 download">
+                    <a (click)="downloadPdfData(order)">Download Ticket</a>
+                  </div>
+                </div>
+                <div class="form-error" *ngIf="orderFlag">
+                  <p>{{orderMsg}}</p>
+                </div>
+            </div>
+          </tab>
+          <tab tabTitle="Change Password" *ngIf="cannotChangePwd">
+            <form method="post" (ngSubmit)="changePassword()"  #g="ngForm">
+              <div class="form-group changeForm">
+                <div class="row">
+                  <div class="col-md-4">
+                    <input type="password" name="password" id="password" placeholder="Old Password" class="form-control" ngModel #password="ngModel"
+                      required />
+                    <span class="help-block" *ngIf="!password.valid && password.touched">
+                      Please enter password!
+                    </span>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="form-control" ngModel
+                      #newPassword="ngModel" required />
+                    <span class="help-block" *ngIf="!newPassword.valid && newPassword.touched">
+                      Please enter new password!
+                    </span>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="password" name="verifyNewPassword" id="verifyNewPassword" placeholder="Verify New Password" class="form-control" ngModel
+                      #verifyNewPassword="ngModel" required />
+                    <span class="help-block" *ngIf="!verifyNewPassword.valid && verifyNewPassword.touched">
+                      Please enter new password again!
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group no-margin-bottom">
+                <div class="row">
+                  <div class="offset-md-4 col-md-4 text-center">
+                    <input type="submit" class="submit-btn" [disabled]="!g.valid" value="Change Password" />
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="form-error" *ngIf="errorFlag">
+              <p>{{errorMsg}}</p>
+            </div>
+            <div class="form-success" *ngIf="successFlag">
+              <p>{{successMsg}}</p>
+            </div>
+          </tab>
+        </tabs>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

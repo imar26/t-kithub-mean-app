@@ -1,0 +1,36 @@
+// Imports
+@import "../../../sass/_variables.scss";
+@import "../../../sass/_mixins.scss";
+@import "../../../sass/_extend.scss";
+
+#users-list-page {
+    margin: 60px 0;
+    .submit-btn {
+        border: 1px solid $link-orange;
+        margin-bottom: 20px;
+        float: $right;
+        @extend %submitButton;
+    }
+    table {
+        text-align: $center;
+        width: 100%;
+        th {
+            background-color: $link-orange;
+            color: $white;
+            font-size: 16px;
+            line-height: normal;
+            text-transform: uppercase;
+            padding: 10px;
+            font-family: $montserrat-regular;
+            font-weight: normal;
+            border: 2px solid $upcoming-para;;
+        }
+        td {
+            color: $upcoming-para;
+            font-size: 16px;
+            padding: 7px 12px;
+            font-family: $montserrat-light;
+            border: 1px solid;
+        }
+    }
+}

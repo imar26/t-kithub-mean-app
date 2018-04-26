@@ -1,0 +1,76 @@
+<app-header></app-header>
+<div id="cart-page">
+  <section class="section-page-header">
+    <div class="container">
+      <h1 class="entry-title">My Cart</h1>
+    </div>
+  </section>
+  <section class="section-page-content">
+    <div class="container">
+      <div class="row">        
+        <div class="col-md-12 section-order-details-event-info">
+          <h2>Cart Information</h2>
+          <div *ngFor="let item of cartItems; let i = index" class="row venue-details">
+            <div class="col-md-4 venue-details-info">
+              <h3><a routerLink="/details/{{item?.id}}">{{item?.name}}</a></h3>
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{item?._embedded?.venues[0]?.name}}, {{item?._embedded?.venues[0]?.city?.name}}</p>
+              <p><i class="fa fa-calendar" aria-hidden="true"></i> {{item?.dates?.start?.dateTime | date: 'fullDate'}}</p>
+              <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{item?.dates?.start?.dateTime | amTz:item?.dates?.timezone | amDateFormat:'h:mm:ss a'}}</p>
+            </div>
+            <div class="col-md-2 venue-details-info">
+              <label>
+                Select Package
+              </label>
+              <select id="package" name="package" [(ngModel)]="item.package">
+                <option value="Gold">Gold</option>
+                <option value="Silver">Silver</option>
+                <option value="Bronze">Bronze</option>
+              </select>
+            </div>
+            <div class="col-md-2 venue-details-info">
+              <label>
+                Tickets
+              </label>
+              <select id="tickets" name="tickets" [(ngModel)]="item.numberOfTickets">
+                <option *ngFor="let ticket of tickets" value={{ticket}}>{{ticket}}</option>
+              </select>
+            </div>
+            <div class="col-md-2 price venue-details-info">
+              <label>
+                Price
+              </label>
+              <p [ngSwitch]="item.package || item.numberOfTickets">
+                <span #f *ngSwitchCase="'Gold'">${{item?.priceRanges[0]?.max | number}}</span>
+                <span #f *ngSwitchCase="'Silver'">${{(item?.priceRanges[0]?.max + item?.priceRanges[0]?.min) / 2 | number}}</span>
+                <span #f *ngSwitchCase="'Bronze'">${{item?.priceRanges[0]?.min | number}}</span>
+                <span #f *ngSwitchDefault>-</span>
+              </p>
+              <label>
+                Total
+              </label>
+              <p class="total" [ngSwitch]="item.package">
+                <span #g *ngSwitchCase="'Gold'">${{item?.priceRanges[0]?.max * item.numberOfTickets | number}}</span>
+                <span #g *ngSwitchCase="'Silver'">${{((item?.priceRanges[0]?.max + item?.priceRanges[0]?.min) / 2) * item.numberOfTickets | number}}</span>
+                <span #g *ngSwitchCase="'Bronze'">${{item?.priceRanges[0]?.min * item.numberOfTickets | number}}</span>
+                <span #g *ngSwitchDefault>-</span>
+              </p>
+            </div>
+            <div class="col-md-2 venue-details-info">
+              <a *ngIf="item.package && item.numberOfTickets" (click)="buy(i, item.id, item.package, item.numberOfTickets)" class="primary-link">Buy Tickets</a>
+              <a class="go-back" (click)="deleteItem(item.id)">Delete Item</a>
+            </div>
+          </div>
+          <div *ngIf="errorFlag" class="venue-details">
+            <div class="venue-details-info">
+              <h4 class="form-error text-left">{{errorMsg}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-right">
+          <a class="go-back" routerLink="/events">Go To Events</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,21 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+@import "../../../../sass/_extend.scss";
+
+.section-page-header{
+	background:$page-background;
+	border-top:1px solid $tickets;
+	border-bottom:1px solid $tickets;
+	margin:0;
+	padding:40px 15px;
+	.entry-title{
+		margin:0;
+		font-size:28px;
+		color:$header-left;
+		text-align:$center;
+		text-transform:uppercase;
+		border:none;
+		padding:0;
+	}
+}

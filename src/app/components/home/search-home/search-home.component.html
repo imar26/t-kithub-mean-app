@@ -1,0 +1,24 @@
+<section class="search-section">
+  <div class="container">
+    <div class="row">
+      <div class="search-content">
+        <h1 class="search-title">Make Your Dream Come True</h1>
+        <p class="search-caption">Meet your favorite artists, sport teams and concerts</p>
+        <div class="search-button">
+          <input type="text" [(ngModel)]="message" placeholder="Search Event By Name">
+          <input type="button" (click)="onKeyDown($event)" value="Submit">
+        </div>
+
+        <div class="search-location">
+          <p>
+            <i class="fa fa-map-marker" aria-hidden="true"></i> {{ location }}
+            <a (click)="onclick($event)">Change Location</a>
+            <select *ngIf="flag" (change)="onChange($event.target.value)" [(ngModel)]="location">
+              <option *ngFor="let cities of citiesInUS" [ngValue]="cities">{{cities}}</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

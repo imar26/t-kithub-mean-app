@@ -1,0 +1,109 @@
+// Imports
+@import "_variables.scss";
+@import "_mixins.scss";
+
+%submitButton {
+  background-color: $link-orange;
+  color: $white;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 10px 20px;
+  border: 0;
+  cursor: pointer;
+  transition: none;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background-color: $white;
+    color: $link-orange;
+  }
+  &:disabled {
+      cursor: no-drop;
+      opacity: 0.7;
+      &:hover {
+          background-color: $link-orange;
+          color: $white;
+      }
+  }
+}
+
+%box {
+  border: 1px solid $main-header;
+  background: $main-header;
+  padding: 35px;
+  @include box-shadow(-1px, 2px, 19px, 0px, rgba(0, 0, 0, 0.46));
+  @include border-radius(5px);
+  .buttons {
+    ul {
+      padding-left: 0;
+      li {
+        display: $inline-block;
+        width: 50%;
+        float: $left;
+        background-color: $white;
+        color: $link-orange;
+        padding: 15px 25px;
+        text-align: $center;
+        &.active {
+          background-color: $link-orange;
+          color: $white;
+        }
+        a {
+          font-size: 18px;
+          line-height: 24px;
+          &:hover {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+    }
+    &.social {
+      ul {
+        li {
+          color: $white;
+        }
+      }
+      .fbk {
+        background-color: $fb-background-color;
+        a {
+          color: $white;
+        }
+      }
+      .gp {
+        background-color: $googleplus-background-color;
+        a {
+          color: $white;
+        }
+        &.false {
+          float: none;
+        }
+      }
+    }
+  }
+  h2 {
+    text-align: $center;
+    padding: 35px 0;
+    color: $white;
+    font-family: $montserrat-bold;
+    font-weight: $w700;
+  }
+  h5 {
+    margin-top: 35px;
+    text-align: $center;
+    color: $white;
+    font-family: $montserrat-light;
+    font-weight: $w300;
+  }
+  .form-group {
+    margin-bottom: 35px;
+    .help-block {
+        position: absolute;
+        color: $red;
+    }
+  }
+  .submit-btn {
+    @extend %submitButton;
+  }
+}

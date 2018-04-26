@@ -1,0 +1,24 @@
+<section class="section-event-single-header clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>{{event?.name}}</h1>
+      </div>
+      <div class="col-md-6">
+        <ul class="ticket-purchase">
+          <li>
+            Tickets start from
+          </li>
+          <li>
+            <span>${{event?.priceRanges[0].min}}</span>
+          </li>
+          <li>
+            <a (click)="getEventId(event.id)">Add to Cart</a>
+            <span class="message" *ngIf="successFlag">{{successMsg}}</span>
+            <span class="message" *ngIf="errorFlag">{{errorMsg}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

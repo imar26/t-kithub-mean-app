@@ -1,0 +1,208 @@
+<section class="section-page-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+          <p>
+            <i class="fa fa-check" aria-hidden="true"></i> Ticket price has been confirmed. Check your order review below and click Checkout to continue.</p>
+        </div>
+      </div>
+
+      <div id="primary" class="col-md-6">
+        <div class="section-order-details-event-info">
+          <div class="venue-details">
+            <h3>Venue & Event Information</h3>
+            <div class="venue-details-info">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="section-order-review-event">                  
+                    <h2 class="event-title">{{eventData?.name}}</h2>
+                    <p>{{eventData?._embedded?.venues[0]?.name}}, {{eventData?._embedded?.venues[0]?.city?.name}}</p>
+                    <p>
+                      <span>{{eventData?.dates?.start?.dateTime | date: 'fullDate'}} | {{eventData?.dates?.start?.dateTime | amTz:eventData?.dates?.timezone | amDateFormat:'h:mm:ss a'}}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="seat-details">
+            <h3>Seats Order Information</h3>
+            <div class="seat-details-info">
+              <table class="table number-tickets">
+                <thead>
+                  <tr>
+                    <th>Package Type</th>
+                    <th>Number of Tickets</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{itemData?.packageType}}</td>
+                    <td>{{itemData?.noTickets}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="secondary" class="col-md-6">
+        <div class="section-order-review-pricing">
+          <div class="pricing-coupon">
+            <h3>Pricing & Coupon</h3>
+            <div class="coupon">
+              <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                  <div class="coupon-title">
+                    <span>Enter Coupon Code Here</span>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-lg-8">
+                  <div class="coupon-form">
+                    <input type="text" placeholder="Code" [(ngModel)]="code">
+                    <input *ngIf="!disableUpdateCodeButton"type="submit" value="Update" (click)="applyCode()">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pricing">
+              <table class="table pricing-review">
+                <tbody>
+                  <tr>
+                    <td>Ticket price ({{itemData?.noTickets}} x {{itemData?.price}})</td>
+                    <td>${{itemData?.total}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tax</td>
+                    <td>${{itemData?.total * 0.15 | number}}</td>
+                  </tr>
+                  <tr *ngIf="validCode">
+                    <td>Coupon <span *ngIf="removeCodeLink" class="codecoupon"><a (click)="removeCode()">Remove Code</a></span></td>
+                    <td class="codecoupon" *ngIf="notDiscountValidCode && !discountValidCode">- ${{codeValue?.value}}</td>
+                    <td class="codecoupon" *ngIf="discountValidCode && !notDiscountValidCode && validQuantity">- ${{(itemData?.total  + (itemData?.total * 0.15)) * (codeValue?.value/100) | number}}</td>
+                  </tr>
+                  <tr *ngIf="invalidCodeMessage">
+                    <td class="codemessage">Code is not valid!</td>
+                  </tr>
+                  <tr *ngIf="showInvalidQuantityCodeFlag">
+                      <td class="codemessage">Code is valid but not acceptable!</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total Price</td>
+                    <td *ngIf="!validCode || showInvalidQuantityCodeFlag" class="total-price">USD $<span #f>{{itemData?.total + (itemData?.total * 0.15) | number}}</span></td>
+                    
+                    <td *ngIf="validCode && notDiscountValidCode && !discountValidCode && !validQuantity" class="total-price">USD $<span #f>{{itemData?.total + (itemData?.total * 0.15) -codeValue?.value | number}}</span></td>
+                    <td *ngIf="validCode && !notDiscountValidCode && discountValidCode && validQuantity" class="total-price">USD $<span #f>{{(itemData?.total + (itemData?.total * 0.15)) -((itemData?.total  + (itemData?.total * 0.15)) * (codeValue?.value/100)) | number}}</span></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-order-details-event-action">
+            <div class="row">
+              <div class="col-sm-offset-5 col-sm-7 col-lg-12 text-right">
+                <a class="go-back" routerLink="/cart">Go To Cart</a>
+                <a class="primary-link" (click)="checkout()">Proceed Checkout</a>
+                <hr>
+                <div *ngIf="showPayment" class="credit-card-details">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                      <a>
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        Credit Card
+                      </a>
+                    </li>
+                  </ul>
+                  <form method="post" (ngSubmit)="confirmPayment()" #g="ngForm">
+                    <div class="row form-group">
+                      <div class="col-sm-12">
+                        <label>Name on Card</label>
+                        <input type="text" class="form-control" placeholder="Name" name="name" id="name" ngModel #name="ngModel" required>
+                        <span class="help-block" *ngIf="!name.valid && name.touched">
+                          Please enter Cardholder's name!
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-sm-8">
+                        <label>Card Number</label>
+                        <input type="text" class="form-control" placeholder="0000-0000-0000-0000" name="card" id="card" ngModel #card="ngModel" required minlength="19" maxlength="19" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                        <span class="help-block" *ngIf="!card.valid && card.touched || card.errors?.minlength">
+                          Please enter entire Card Number!
+                        </span>
+                      </div>
+                      <div class="cvv col-sm-4">
+                        <label>CVV</label>
+                        <input type="text" class="form-control" placeholder="CVV" name="cvv" id="cvv" ngModel #cvv="ngModel" required minlength="3" maxlength="3" pattern="\d{3}">
+                        <span class="help-block" *ngIf="!cvv.valid && cvv.touched || cvv.errors?.minlength">
+                          Please enter CVV!
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-sm-6">
+                        <label>Month</label>
+                        <select class="selectpicker dropdown" name="month" id="month" ngModel #month="ngModel" required>
+                          <option>January</option>
+                          <option>February</option>
+                          <option>March</option>
+                          <option>April</option>
+                          <option>May</option>
+                          <option>June</option>
+                          <option>July</option>
+                          <option>August</option>
+                          <option>September</option>
+                          <option>October</option>
+                          <option>November</option>
+                          <option>December</option>
+                        </select>
+                        <span class="help-block" *ngIf="!month.valid && month.touched">
+                          Please select the month!
+                        </span>
+                      </div>
+                      <div class="col-sm-6">
+                        <label>Year</label>
+                        <select class="selectpicker dropdown" name="year" id="year" ngModel #year="ngModel" required>
+                          <option value="2030">2030</option>
+                          <option value="2029">2029</option>
+                          <option value="2028">2028</option>
+                          <option value="2027">2027</option>
+                          <option value="2026">2026</option>
+                          <option value="2025">2025</option>
+                          <option value="2024">2024</option>
+                          <option value="2023">2023</option>
+                          <option value="2022">2022</option>
+                          <option value="2021">2021</option>
+                          <option value="2020">2020</option>
+                          <option value="2019">2019</option>
+                          <option value="2018">2018</option>
+                        </select>
+                        <span class="help-block" *ngIf="!year.valid && year.touched">
+                          Please select the year!
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-md-6 text-right clearfix">
+                        <input type="button" (click)="cancelPayment()" class="submit-btn" value="Cancel" />
+                      </div>
+                      <div class="col-md-6 text-left clearfix">
+                        <input type="submit" class="submit-btn" value="Confirm Payment" [disabled]="!g.valid" />
+                      </div>                      
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

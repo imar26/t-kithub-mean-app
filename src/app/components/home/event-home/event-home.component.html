@@ -1,0 +1,37 @@
+<section class="section-upcoming-events">
+  <div class="container">
+    <div class="row">
+      <div class="section-header">
+        <h2>Upcoming Events</h2>
+        <p>Stay up-to-date with the upcoming events in your area</p>
+        <a routerLink="/events">See all upcoming events</a>
+      </div>
+      <div class="section-content">
+        <ul class="clearfix">
+          <li *ngFor="let event of dates">
+            <div class="date">
+              <a href="#">
+                <span class="day">{{event.dates.start.localDate | date:'d'}}</span>
+                <span class="month">{{event.dates.start.localDate | date:'MMMM'}}</span>
+                <span class="year">{{event.dates.start.localDate | date:'y'}}</span>
+              </a>
+            </div>
+            <a href="#">
+              <img src={{event.images[5].url}} alt="image">
+            </a>
+            <count-down *ngIf="event.dates.start.showDateTime" class="count" [text]="text" units="Days | Hours | Minutes | Seconds " end="'{{event.dates.start.dateTime}}'"></count-down>
+            <div class="info">              
+              <p>{{event.name}}
+                <span>{{event._embedded.venues[0].city.name}}</span>
+              </p>
+              <a href="/details/{{event.id}}" class="get-ticket">View Event</a>
+              <!-- <input type="hidden" value="'{{event.id}}'" name="eventID"/> -->
+            </div>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</section>
+

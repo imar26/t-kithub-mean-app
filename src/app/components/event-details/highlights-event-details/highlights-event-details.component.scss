@@ -1,0 +1,92 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+@import "../../../../sass/_extend.scss";
+
+.section-event-single-content {
+	background: $search-bg;
+	padding: 70px 0 0;
+	.event-info {
+		margin: 0 0 35px;		
+		.event-info-about {
+			padding: 0 0 0 25px;
+		}
+	}
+	.event-highlights, .event-location {
+		padding: 0 0 0 25px;
+	}
+	.event-info, .event-highlights, .event-location {
+		h2 {
+			font-size: 22px;
+			line-height: 22px;
+			font-family: $open-sans;
+			color: $section-header;
+			font-weight: $w700;
+			margin: 0 0 35px;
+			text-transform: uppercase;
+			position: $relative;
+			&:before {
+				display: $block;
+				content: "";
+				width: 5px;
+				height: 16px;
+				background: $section-before;
+				position: $absolute;
+				left: -25px;
+				top: 3px;
+			}
+		}
+		p {
+			font-size: 13px;
+			line-height: 22px;
+			font-family: $montserrat-light;
+			color: $upcoming-para;
+			padding: 0 3px;
+			margin: 0 0 35px;
+		}
+	}
+	.event-info-img {
+		ul {
+			padding-left: 0;
+			li {
+				list-style-type: none;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+	.event-highlights {
+		margin: 0 0 35px;
+		ul {
+			padding: 0 3px;
+			li {
+				font-size: 13px;
+				line-height: 22px;
+				font-family: $montserrat-light;
+				color: $upcoming-para;
+				position: $relative;
+				padding: 0 0 0 45px;
+				margin: 0 0 30px;
+				display: $inline-block;
+				vertical-align: top;
+				&:before {
+					content: "\f00c";
+					width: 26px;
+					height: 26px;
+					line-height: 24px;
+					border: 1px solid $link-orange;
+					border-radius: 50px;
+					text-align: $center;
+					color: $link-orange;
+					font-family: $fontawesome;
+					display: $inline-block;
+					font-size: 14px;
+					position: $absolute;
+					left: 0;
+					top: 3px;
+				}
+			}
+		}
+	}
+}

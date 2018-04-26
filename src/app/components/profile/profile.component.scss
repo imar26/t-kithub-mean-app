@@ -1,0 +1,110 @@
+// Imports
+@import "../../../sass/_variables.scss";
+@import "../../../sass/_mixins.scss";
+@import "../../../sass/_extend.scss";
+
+.profile-page {
+    padding: 40px 0;
+    h2 {
+        margin-bottom: 30px;
+    }
+    input {
+        margin-bottom: 15px;
+    }
+    .help-block {
+        position: $absolute;
+        color: $red;
+        bottom: -5px;
+    }
+    h3 {
+        color: $white;
+        margin-bottom: 20px;
+    }    
+    .order-list {
+        margin-bottom: 10px;
+        border-bottom: 2px solid $white;
+        padding: 10px 0;
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    .order, .information {
+        h5, h6 {
+            color: $white;
+        }
+        p {
+            color: $link-orange;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 22px;
+        }
+    }
+    .download {
+        margin-top: 10px;
+        a {
+            @extend %submitButton;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+// Media Queries
+@media (max-width: 1200px) {
+    .profile-page {
+        .download {
+            a {
+                padding: 10px 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .profile-page {
+        .download {
+            text-align: $right;
+            a {
+                padding: 0;
+                color: $link-orange;
+                background-color: transparent;
+            }
+        }    
+        .help-block {
+            font-size: 11.5px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-page {
+        .download {
+            text-align: $left;
+            margin-bottom: 15px;
+            a {
+                padding: 8px 9px;
+                color: $white;
+                background-color: $link-orange;
+            }
+        }    
+        .help-block {
+            font-size: 11.5px;
+        }
+        form {
+            margin: 15px 0;
+        }
+        .changeForm {
+            input {
+                margin-bottom: 35px;
+            }
+            span {
+                font-size: 14px;
+                bottom: 15px;
+            }
+        }
+    }
+    .updateBtn {
+        margin: 0 auto;        
+    }
+}

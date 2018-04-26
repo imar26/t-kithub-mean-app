@@ -1,0 +1,427 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+@import "../../../../sass/_extend.scss";
+
+.section-page-content {
+	padding: 70px 0;
+	background: $white;
+	.alert {
+		@include border-radius(4px);
+		&.alert-info {
+			border: 1px solid $order;
+			background: $page-background;
+			padding: 20px 25px;
+			margin: 0 0 70px;
+			p {
+				font-size: 15px;
+				color: $upcoming-para;
+				margin: 0;
+				line-height: 26px;
+				font-family: $montserrat-regular;
+				i {
+					font-size: 16px;
+					text-align: $center;
+					color: $link-orange;
+					float: $left;
+					margin: 0 20px 0 0;
+					width: 26px;
+					height: 26px;
+					line-height: 24px;
+					border: 1px solid $link-orange;
+					@include border-radius(50px);
+				}
+			}		
+		}
+	}	
+	.section-order-details-event-info {
+		margin: 0 0 70px;
+		.venue-details, .seat-details {
+			h3 {
+				color: $section-header;
+				font-size: 20px;
+				font-family: $montserrat-regular;
+				margin: 0 0 25px;
+			}
+		}
+		.venue-details-info {
+			padding: 20px 30px;
+			border-right: 1px solid $header-left;
+			border-top: 1px solid $header-left;
+			border-bottom: 1px solid $header-left;
+			border-left: 3px solid $link-orange;
+			@include border-radius(5px);
+			margin: 0 0 40px;
+			p {
+				margin: 0 0 10px;
+				color: $link-orange;
+				font-family: $montserrat-regular;
+				font-size: 18px;
+				line-height: normal;
+				&:last-child {
+					margin: 0;
+				}
+				span {
+					font-family: $montserrat-light;
+				}
+			}
+		}
+		.section-order-review-event {
+			.event-caption {
+				color: $upcoming-para;
+				font-size: 13px;
+				font-family: $montserrat-regular;
+				margin: 0 0 15px;
+				display: $block;
+			}
+			.event-title {
+				color: $section-header;
+				font-size: 16px;
+				font-family: $montserrat-bold;
+				text-transform: uppercase;
+				margin: 0 0 20px;
+			}
+			p {
+				margin: 0!important;
+			}
+		}
+		.seat-details-info {
+			padding: 20px 30px;
+			border-right: 1px solid $header-left;
+			border-top: 1px solid $header-left;
+			border-bottom: 1px solid $header-left;
+			border-left: 3px solid $footer-border-top;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			.table {
+				border: none;
+				tr {
+					border: none;
+				}
+				> thead {
+					&:first-child {
+						> tr {
+							&:first-child {
+								> th {
+									border-top: 0;
+								}
+							}
+						}
+					}
+				}
+				th {
+					color: $upcoming-para;
+					font-size: 16px;
+					line-height: normal;
+					text-transform: uppercase;
+					padding: 0 0 10px;
+					font-family: $montserrat-regular;
+					font-weight: normal;
+					border: none;
+				}
+				td {
+					color: $upcoming-para;
+					font-size: 16px;
+					text-transform: uppercase;
+					padding: 0 0 5px;
+					font-family: $montserrat-light;
+					border: none;
+				}
+			}
+		}
+	}
+	.section-order-review-pricing {
+		padding: 0 0 0 20px;
+		h3 {
+			color: $section-header;
+			font-size: 20px;
+			font-family: $montserrat-regular;
+			margin: 0 0 25px;
+		}
+		label {
+			color: $upcoming-para;
+			font-size: 16px;
+			line-height: normal;
+			text-transform: uppercase;
+			font-family: $montserrat-regular;
+			font-weight: normal;
+			margin-bottom: 5px;
+		}
+		input {
+			margin-bottom: 15px;
+		}
+		span {
+			&.help-block {
+				position: $absolute;
+				bottom: -10px;
+				color: $red;
+			}
+		}
+		input[type="text"], input[type="number"] {
+			padding: 0 18px;
+			color: $ticket-table;
+			font-size: 16px;
+			font-family: $montserrat-light;
+			border: 1px solid $ticket-table;
+			border-radius: 5px;
+			margin: 0 15px 10px 0;
+			line-height: 45px;
+		}
+		input[type="submit"] {
+			padding: 0 18px;
+			color: $white;
+			font-size: 14px;
+			text-align: $center;
+			text-transform: uppercase;
+			font-family: $montserrat-light;
+			border: 1px solid $link-orange;
+			@include border-radius(5px);
+			background: $link-orange;
+			line-height: 45px;
+			cursor: pointer;
+			transition: 0;
+			&:disabled {
+				cursor: no-drop;
+				opacity: 0.7;
+				&:hover {
+					background-color: $link-orange;
+					color: $white;
+				}
+			}
+			&:hover {
+				color: $link-orange;
+				background: $white;
+			}
+		}
+		.pricing-coupon {
+			h3 {
+				color: $section-header;
+				font-size: 20px;
+				font-family: $montserrat-regular;
+				margin: 0 0 25px;
+			}
+		}
+		.coupon {
+			padding: 20px 30px;
+			border-right: 1px solid $header-left;
+			border-top: 1px solid $header-left;
+			border-bottom: 1px solid $header-left;
+			border-left: 3px solid $footer-border-top;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+		.coupon-title {
+			color: $upcoming-para;
+			font-size: 14px;
+			line-height: 23px;
+			font-family: $montserrat-regular;
+			text-transform: uppercase;
+		}
+		.coupon-form {
+			input[type="text"] {
+				padding: 0 18px;
+				color: $ticket-table;
+				font-size: 16px;
+				font-family: $montserrat-light;
+				border: 1px solid $ticket-table;
+				border-radius: 5px;
+				float: $left;
+				margin: 0 10px 0 0;
+				width: 66%;
+				height: 45px;
+				line-height: 45px;
+			}
+			input[type="submit"] {
+				padding: 0 18px;
+				color: $link-orange;
+				font-size: 14px;
+				text-align: $center;
+				text-transform: uppercase;
+				font-family: $montserrat-light;
+				border: 1px solid $link-orange;
+				@include border-radius(5px);
+				float: $left;
+				background: $white;
+				width: 30%;
+				height: 45px;
+				line-height: 45px;
+			}
+		}
+		.pricing {
+			padding: 20px 30px;
+			border-right: 1px solid $header-left;
+			border-top: none;
+			border-bottom: 1px solid $header-left;
+			border-left: 1px solid $header-left;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+			background: $search-bg;
+			margin: 0 0 40px;
+			.codecoupon{
+				color: $green !important;
+			}
+			.codemessage{
+				color: $red !important;
+			}
+		}
+		.table {
+			border: none;
+			margin: 0;
+			td, tr, th {
+				border: none;
+				margin: 0;
+			}
+			tbody {
+				td {
+					padding: 0 0 10px;
+					font-size: 14px;
+					color: $upcoming-para;
+					font-family: $montserrat-regular;
+					&:nth-child(2) {
+						text-align: $right;
+					}
+				}				
+			}
+			tfoot {
+				td {
+					padding: 15px 0 0;
+					color: $upcoming-para;
+					font-size: 16px;
+					text-transform: uppercase;
+					font-family: $montserrat-regular;
+					vertical-align: middle;
+					&.total-price {
+						color: $link-orange;
+						font-size: 23px;
+						text-align: $right;
+					}
+				}
+			}
+		}
+	}
+	.section-order-details-event-action {
+		.primary-link {
+			padding: 7px 18px;
+			color: $link-orange;
+			font-size: 14px;
+			text-align: $center;
+			text-transform: uppercase;
+			font-family: $montserrat-light;
+			border: 1px solid $link-orange;
+			@include border-radius(5px);
+			background: $white;
+			line-height: 45px;
+			margin-bottom: 15px;
+			&:hover {
+				background: $white;
+				color: $link-orange;
+				text-decoration: none;
+			}
+		}
+		.go-back {
+			display: $inline-block;
+			font-size: 16px;
+			background: $white;
+			color: $link-orange;
+			border: 1px solid $link-orange;
+			@include border-radius(50px);
+			text-align: $center;
+			padding: 10px 20px;
+			font-family: $montserrat-regular;
+			text-transform: uppercase;
+			margin-left: 15px;
+			&:hover {				
+				background: $link-orange;
+				color: $white;
+				text-decoration: none;
+			}
+		}
+		.credit-card-details {
+			margin: 40px 0 0;
+			ul {
+				text-align: $left;
+				border-bottom: 0;
+				li {
+					float: none;
+					display: $inline-block;
+					margin: 0;
+					a {
+						color: $ticket-table;
+						font-size: 20px;
+						text-align: $center;
+						padding: 10px 20px;
+						border: 3px solid $search-border;
+						background: none!important;
+						@include border-radius(5px);				
+					}
+					&.active {
+						a {
+							color: $link-orange;
+    						border: 3px solid $link-orange;
+						}
+					}
+				}
+			}
+			form {
+				margin-top: 30px;
+				text-align: $left;
+				input {
+					border: 1px solid $search-border;
+					color: $header-left;
+					margin-bottom: 10px;
+					@include placeholder {
+						color: $header-left;
+						font-weight: $w400;
+					}
+				}
+				select {
+					padding: .375rem .75rem;
+					color: $header-left;
+					border: 1px solid $search-border;
+    				@include border-radius(.25rem);
+					font-size: 15px;
+					background: $white !important;
+					@include box-shadow-none(none);
+					width: 100%;
+					margin-bottom: 10px;
+				}
+				.submit-btn {
+					border: 1px solid $link-orange;
+					margin-top: 10px;
+					@extend %submitButton;
+				}
+				span {
+					position: $absolute;
+					color: $red;
+					bottom: -10px;
+				}
+			}
+		}
+	}
+}
+
+// Media Queries
+@media (max-width: 992px) {
+	.section-page-content {
+		.section-order-details-event-action {
+			display: $inline-block;
+			float: $left;
+			margin-right: 15px;
+			.primary-link {
+				line-height: 1.8;
+				padding: 10px 18px;
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.section-page-content {
+		.section-order-details-event-action {			
+			margin-right: 10px;
+			.primary-link {
+				padding: 7px 9px;
+			}
+		}
+	}
+}

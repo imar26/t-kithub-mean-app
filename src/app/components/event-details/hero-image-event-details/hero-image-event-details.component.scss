@@ -1,0 +1,44 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+@import "../../../../sass/_extend.scss";
+
+.section-event-single-featured-header {
+  background: url(../../../../assets/images/search-background.jpg) no-repeat $center $center;  
+  @include background-size(cover);
+  min-height: 322px;
+  position: $relative;
+  &:before {
+	background: rgba(0, 0, 0, 0) url(../../../../assets/images/overlay.png) repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: $absolute;
+    right: 0;
+    top: 0;
+  }
+  .section-content {
+	padding: 140px 0 150px;
+    text-align: $center;
+	position: $relative;
+	h1 {
+		color: $white;
+		font-family: $montserrat-regular;
+		font-size: 35px;
+		line-height: 35px;
+		margin: 0 0 15px;
+		span {
+			font-family: $montserrat-light;
+		}
+	}
+	p {
+		color: $white;
+		font-family: $montserrat-light;
+		font-size: 15px;
+		margin: 0;
+		i {
+			margin: 0 5px 0 0;
+		}
+	}
+  }
+}

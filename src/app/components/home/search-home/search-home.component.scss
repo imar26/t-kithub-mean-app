@@ -1,0 +1,157 @@
+// Imports
+@import "../../../../sass/_variables.scss";
+@import "../../../../sass/_mixins.scss";
+
+.search-section {
+    position: $relative;
+    background: url('../../../../assets/images/search-background.jpg') no-repeat $center $center;
+    @include background-size(cover);
+    height: 686px;
+    .search-content {
+        height: auto;
+        left: 0;
+        margin: auto;
+        position: $absolute;
+        right: 0;
+        text-align: $center;
+        top: 40%;
+        width: 60%;
+        z-index: 900;
+        .search-title {
+            font-size: 36px;
+            color: $white;
+            font-family: $montserrat-regular;
+            margin: 0 0 20px;
+        }
+        .search-caption {
+            font-size: 26px;
+            color: $white;
+            font-family: $montserrat-light;
+            margin: 0 0 45px;
+        }
+        p {
+            margin-bottom: 1.6em;
+            line-height: 1.6;
+            font-size: 14px;
+            font-family: $montserrat-light;
+        }
+        .search-button {
+            margin: 0 0 45px;
+            position: $relative;
+            input[type="text"] {
+                border: 2px solid $white;
+                padding: 25px 80px 25px 45px;
+                color: $white;
+                font-size: 22px;
+                font-family: $montserrat-light;
+                width: 100%;
+                background: rgba(240,243,243, 0.2) no-repeat 93% center;
+                @include border-radius(50px);
+                margin: 0 auto;
+            }
+            input[type="button"] {
+                background-image: url('../../../../assets/images/search.png');
+                height: 25px;
+                width: 25px;
+                background-repeat: no-repeat;
+                background-color: transparent;
+                border: 0;
+                text-indent: -9999px;
+                z-index: 1;
+                position: $absolute;
+                top: 30px;
+                right: 30px;
+                cursor: pointer;
+            }
+        }
+        .search-location {
+            p {
+                color: $white;
+                font-size: 15px;
+                i {
+                    margin: 0 5px;
+                }
+                a {
+                    font-size: 12px;
+                    opacity: .6;
+                    text-decoration: underline;
+                    color: $white;
+                    margin: 0 5px;
+                }
+            }
+            select {
+                padding: 7px 20px;
+                color: $header-left;
+                font-size: 15px;
+                background: $white !important;
+                @include box-shadow-none(none);
+            }
+        }
+    }
+    &:after {
+        content: "";
+        position: $absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: $gradient1;
+        background: -moz-linear-gradient(-45deg, $gradient1 0%, $gradient2 100%);
+        background: -webkit-linear-gradient(-45deg, $gradient1 0%,$gradient2 100%);
+        background: linear-gradient(135deg, $gradient1 0%,$gradient2 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d91e18', endColorstr='#ff6600',GradientType=1 );
+    }
+}
+
+// Media Queries
+@media (max-width: 768px) {
+    .search-section {
+        .search-content {
+            .search-title {
+                font-size: 26px;
+            }
+            .search-caption {
+                font-size: 18px;
+            }
+            .search-button {
+                margin: 0 0 20px;
+                input[type="text"] {
+                    padding: 20px 30px;
+                    font-size: 14px;
+                }
+                input[type="button"] {
+                    top: 20px;
+                }
+            }
+            .search-location {
+                select {
+                    display: $block;
+                    margin: 15px auto;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {    
+    .search-section {
+        .search-content {
+            padding: 35px 0;
+            .search-button {
+                input[type="text"] {
+                    padding: 15px 10px;
+                }
+                input[type="button"] {
+                    top: 15px;
+                    right: 15px;
+                }
+            }
+            .search-title {
+                font-size: 21px;
+            }
+            .search-caption {
+                margin: 0 0 20px;
+            }
+        }
+    }
+}

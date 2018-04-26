@@ -1,0 +1,109 @@
+<section class="section-page-content">
+  <div class="container">
+    <div class="row">
+      <div id="primary" class="col-md-7">
+        <div class="section-order-details-event-info">
+          <div class="venue-details">
+            <h3>Promo Code Information</h3>
+            <div class="venue-details-info" *ngFor=" let code of codes">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="section-order-review-event">
+                    <span class="event-caption">Code Name: {{code.code}}</span>
+                    <h2 class="event-title">Description: {{code.description}}</h2>                    
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="section-order-details-event-action" *ngIf="showAdmin">
+                    <a (click)="updateCode(code)" class="primary-link"> Update Code</a>
+                  </div>
+                  <div class="section-order-details-event-action" *ngIf="showAdmin">
+                    <a (click)="deleteCode(code._id)" class="primary-link">Delete Code</a>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div *ngIf="errorFlag" class="form-error text-left">
+              {{errorMsg}}
+            </div>            
+          </div>
+        </div>
+      </div>
+
+      <div id="secondary" class="col-md-5" *ngIf="showAdmin">
+        <div class="section-order-review-pricing">
+          <div class="col-sm-12">
+            <div class="section-order-review-event">
+              <h3>Add Promo Code / Update Promo Code</h3>
+              <form method="post" id="codeForm" (ngSubmit)="addPromoCode()" #f="ngForm">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label>Promo Code Name *</label>
+                      <input type="text" ngModel name="code" id="code" #code="ngModel" placeholder="Promo Code" class="form-control" required />
+                      <span class="help-block" *ngIf="!code.valid && code.touched">
+                        Please enter Promo Code Name!
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label>Description *</label>
+                      <input type="text" ngModel name="description" id="description" #description="ngModel" placeholder="Description" class="form-control" required />
+                      <span class="help-block" *ngIf="!description.valid && description.touched">
+                        Please enter Description!
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label>Value *</label>
+                      <input type="text" ngModel name="value" id="value" #value="ngModel" placeholder="Value" class="form-control" required />
+                      <span class="help-block" *ngIf="!value.valid && value.touched">
+                        Please enter Value!
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label>Number of Tickets</label>
+                      <input type="number" ngModel name="quantity" id="quantity" #quantity="ngModel" placeholder="Number of Tickets" class="form-control" min="1" max="10" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input type="hidden" ngModel name="_id" id="_id" #codeId="ngModel" />
+                      <input type="hidden" ngModel name="dateCreated" id="dateCreated" #dateCreated="ngModel" />
+                      <input type="hidden" ngModel name="__v" id="__v" #version="ngModel" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input type="submit" class="submit-btn" value="Add / Update Promo Code" [disabled]="!f.valid" />                  
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div *ngIf="successFlag" class="form-success text-left">
+                {{successMsg}}
+              </div>
+              <div *ngIf="exists" class="form-error text-left">
+                {{errorMsg}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

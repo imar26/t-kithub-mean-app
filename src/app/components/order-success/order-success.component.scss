@@ -1,0 +1,145 @@
+// Imports
+@import "../../../sass/_variables.scss";
+@import "../../../sass/_mixins.scss";
+@import "../../../sass/_extend.scss";
+
+%button {
+	display: $block;
+	font-size: 16px;
+	@include border-radius(50px);
+	text-align: $center;
+	padding: 10px;
+	font-family: $montserrat-regular;
+	text-transform: uppercase;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.section-page-header{
+	background:$page-background;
+	border-top:1px solid $tickets;
+	border-bottom:1px solid $tickets;
+	margin:0;
+	padding:40px 15px;
+	.entry-title{
+		margin:0;
+		font-size:28px;
+		color:$header-left;
+		text-align:$center;
+		text-transform:uppercase;
+		border:none;
+		padding:0;
+	}
+}
+.section-page-content {
+	padding: 70px 0;
+    background: $white;
+    text-align: $center;
+	h2 {
+		display: $block;
+		color: $section-header;
+		font-size: 28px;
+		font-family: $montserrat-regular;
+		text-transform: uppercase;
+		margin: 0 0 35px;
+	}
+	.section-order-details-event-info {
+		.venue-details {
+			padding: 20px 30px;
+			border-right: 1px solid $header-left;
+			border-top: 1px solid $header-left;
+			border-bottom: 1px solid $header-left;
+			border-left: 3px solid $link-orange;
+			@include border-radius(5px);
+			margin: 0 0 20px;
+			h3 {
+				color: $section-header;
+				font-size: 18px;
+				font-family: $montserrat-regular;
+				margin: 0 0 25px;
+				a {
+					color: $section-header;
+					&:hover {
+						color: $body;
+						text-decoration: none;
+					}
+				}
+			}
+			p {
+				i {
+					padding-right: 10px;
+				}
+			}
+			label {
+				color: $upcoming-para;
+				font-size: 16px;
+				line-height: normal;
+				text-transform: uppercase;
+				padding: 0 0 10px;
+				font-family: $montserrat-regular;
+				font-weight: normal;
+			}
+			select {
+				padding: 12px 20px;
+				color: $header-left;
+				border: 2px solid $search-border;
+				font-size: 15px;
+				background: $white !important;
+				@include box-shadow-none(none);
+				width: 100%;
+			}
+			.price {
+				p {
+					color: $upcoming-para;
+					font-size: 16px;
+					text-transform: uppercase;
+					padding: 0 0 5px;
+					font-family: $montserrat-light;
+					&.total {
+						font-size: 26px;
+						color: $link-orange;
+					}
+				}
+			}
+			a {
+				&.primary-link {
+					@extend %button;
+					color: $white;
+					border: 1px solid $link-orange;
+					background: $link-orange;
+					margin-bottom: 15px;
+					&:hover {
+						background: $white;
+						color: $link-orange;
+					}
+				}
+			}
+		}
+	}
+	.go-back {
+		@extend %button;
+		color: $link-orange;
+		border: 1px solid $link-orange;
+		background: $white;
+		width: 100%;
+		float: none;
+		margin-top: 10px;
+		&:hover {
+			color: $white;
+			background: $link-orange;
+		}
+	}
+}
+
+// Media Queries
+@media (max-width: 768px) {
+	.section-page-content {
+		.text-center {
+			.go-back {
+				width: 100%;
+				margin-bottom: 15px;
+			}
+		}		
+	}
+}
