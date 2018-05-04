@@ -1,14 +1,14 @@
 # T-Kithub 
 
 A complete web application that allows anyone to search, view and book ticket for any events.
-This application fetches a wide range of events from Ticket master API and has events across various categores like Music, Films, Sports and Arts & Theatre.
+This application fetches a wide range of events from Ticket master API and has events across various categories like Music, Films, Sports and Arts & Theatre.
 The application allows users to sign up and book tickets for any event seamlessly and with a great user experience.
 
 ### Overview of the application
 * This web application allows user to sign up/login. Error handling has been done for the login/register use case. Incorrect username/password won't allow the user to login. 
 * The application also allows user to login using facebook & google. User also has the privilege to request a new password if he/she forgets it. 
 * On successful registration, email is sent to the registered email address of the user. 
-* User can view top three events based on his/her location, can view all events, search for events, filter events by name, location, category, price and data, sort events by name, location and date, view details of a single event, add to cart, select package and quantity of seats and book ticket.
+* User can view top three events based on his/her location, can view all events, search for events, filter events by name, location, category, price and date, sort events by name, location and date, view details of a single event, add to cart, select package and quantity of seats and book ticket.
 * User can also download a pdf copy of his/her ticket and can view order history.
 * Users can add coupons while making final payment. 
 * Application allows admin user to download a csv report of all the active users. Admin performs CRUD operation to add/read/update & delete coupon codes.
